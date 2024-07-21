@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/adminVoter.css" />
+
+<section class="voterTally">
+  <h1 class="headingText">All Voters</h1>
+
+  <div class="tableElection">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Voter UserName</th>
+          <th scope="col">Voter Email</th>
+          <th scope="col">Voted To</th>
+          <th scope="col">Election Name</th>
+          <th scope="col">Election Type</th>
+          <th scope="col">Election Province</th>
+          <th scope="col">Election City</th>
+          <th scope="col">Election Region</th>
+          <th scope="col">Vote Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% votes.forEach((vote, index) => { %>
+        <tr id="voteRow_<%= vote._id %>">
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= vote.UserId ? vote.UserId.UserName : 'N/A' %></td>
+          <td><%= vote.UserId ? vote.UserId.Email : 'N/A' %></td>
+          <td>
+            <%= vote.CandidateId ? vote.CandidateId.FirstName + ' ' +
+            vote.CandidateId.LastName : 'N/A' %>
+          </td>
+          <td><%= vote.ElectionId ? vote.ElectionId.Name : 'N/A' %></td>
+          <td><%= vote.ElectionId ? vote.ElectionId.ElectionType : 'N/A' %></td>
+          <td><%= vote.ElectionId ? vote.ElectionId.Province : 'N/A' %></td>
+          <td><%= vote.ElectionId ? vote.ElectionId.City : 'N/A' %></td>
+          <td><%= vote.ElectionId ? vote.ElectionId.Region : 'N/A' %></td>
+          <td>
+            <%= vote.createdAt ? vote.createdAt.toLocaleDateString() : 'N/A' %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

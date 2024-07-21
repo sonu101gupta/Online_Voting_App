@@ -1,0 +1,145 @@
+<link rel="stylesheet" href="/css/adminAccount.css">
+<section class="box-data">
+    <h1 class="headingText">Account Information</h1>
+    <div class="formContainer">
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="validationCustom01" value="<%= details[0].FirstName %>" required>
+                <div class="invalid-feedback">
+                    Please provide the first name.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="validationCustom02" value="<%= details[0].LastName %>" required>
+                <div class="invalid-feedback">
+                    Please provide the last name.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" name="dob" id="validationCustom03" <% if (details[0] && details[0].DOB) { %> value="<%= new Date(details[0].DOB).toISOString().split('T')[0] %>" <% } else { %> value="" <% } %> required>
+                <div class="invalid-feedback">
+                    Please provide the date of birth.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="text" class="form-control" name="userName" id="validationCustomUsername" aria-describedby="inputGroupPrepend" value="<%= details[0].UserId.UserName %>" required>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom04" class="form-label">Password</label>
+                <input type="text" class="form-control" name="password" id="validationCustom04" value="<%= details[0].UserId.Password %>" required>
+                <div class="invalid-feedback">
+                    Please provide a password.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom05" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="validationCustom05" value="<%= details[0].UserId.Email %>" required>
+                <div class="invalid-feedback">
+                    Please provide a valid email address.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom06" class="form-label">Present Address</label>
+                <input type="text" class="form-control" name="address" id="validationCustom06" value="<%= details[0].Address %>" required>
+                <div class="invalid-feedback">
+                    Please provide the present address.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom07" class="form-label">Aadhar Number</label>
+                <input type="text" class="form-control" name="aadhar" id="validationCustom07" value="<%= details[0].Aadhar %>" required>
+                <div class="invalid-feedback">
+                    Please provide a valid Aadhar number.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom08" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" name="phoneNumber" id="validationCustom08" value="<%= details[0].PhoneNumber %>" required>
+                <div class="invalid-feedback">
+                    Please provide a valid phone number.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom09" class="form-label">State</label>
+                <select class="form-select" name="state" id="validationCustom09" required>
+                    <option disabled value="">Choose...</option>
+                    <option value="Delhi" <% if (details[0].State === 'Delhi') { %> selected <% } %> >Delhi</option>
+                    <option value="Maharashtra" <% if (details[0].State === 'Maharashtra') { %> selected <% } %> >Maharashtra</option>
+                    <option value="Karnataka" <% if (details[0].State === 'Karnataka') { %> selected <% } %> >Karnataka</option>
+                    <option value="West Bengal" <% if (details[0].State === 'West Bengal') { %> selected <% } %> >West Bengal</option>
+                    <option value="Tamil Nadu" <% if (details[0].State === 'Tamil Nadu') { %> selected <% } %> >Tamil Nadu</option>
+                    <option value="Uttar Pradesh" <% if (details[0].State === 'Uttar Pradesh') { %> selected <% } %> >Uttar Pradesh</option>
+                    <option value="Punjab" <% if (details[0].State === 'Punjab') { %> selected <% } %> >Punjab</option>
+                    <option value="Haryana" <% if (details[0].State === 'Haryana') { %> selected <% } %> >Haryana</option>
+                    <option value="Gujarat" <% if (details[0].State === 'Gujarat') { %> selected <% } %> >Gujarat</option>
+                    <option value="Rajasthan" <% if (details[0].State === 'Rajasthan') { %> selected <% } %> >Rajasthan</option>
+                    <option value="Bihar" <% if (details[0].State === 'Bihar') { %> selected <% } %> >Bihar</option>
+                    <!-- Add more states as needed -->
+                </select>
+                <div class="invalid-feedback">
+                    Please select the state.
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="validationCustom10" class="form-label">City</label>
+                <select class="form-select" name="city" id="validationCustom10" required>
+                    <option selected disabled value="">Choose...</option>
+                    <% const cities = [
+                        "Delhi", "Mumbai", "Bengaluru", "Kolkata", "Chennai", "Hyderabad",
+                        "Pune", "Ahmedabad", "Jaipur", "Lucknow", "Kanpur", "Nagpur",
+                        "Indore", "Thane", "Vadodara", "Patna", "Bhopal", "Visakhapatnam",
+                        "Chandigarh", "Guwahati", "Mysuru", "Nashik", "Coimbatore",
+                        "Vijayawada", "Madurai", "Raipur", "Jodhpur", "Surat"
+                    ]; %>
+                    <% cities.forEach(city => { %>
+                        <option value="<%= city %>" <% if (details[0].City === city) { %> selected <% } %> ><%= city %></option>
+                    <% }); %>
+                </select>
+                <div class="invalid-feedback">
+                    Please select the city.
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom11" class="form-label">District</label>
+                <select class="form-select" name="district" id="validationCustom11" required>
+                    <option selected disabled value="">Choose...</option>
+                    <% const districts = [
+                        "South Delhi", "North Mumbai", "Central Bengaluru", "North Kolkata",
+                        "South Chennai", "East Hyderabad", "West Pune", "South Ahmedabad",
+                        "West Jaipur", "East Lucknow", "Central Kanpur", "South Nagpur",
+                        "North Indore", "Central Thane", "South Vadodara", "East Patna",
+                        "Central Bhopal", "North Visakhapatnam", "Central Chandigarh",
+                        "West Guwahati", "South Mysuru", "North Nashik", "South Coimbatore",
+                        "East Vijayawada", "Central Madurai", "South Raipur", "East Jodhpur",
+                        "North Surat"
+                    ]; %>
+                    <% districts.forEach(district => { %>
+                        <option value="<%= district %>" <% if (details[0].District === district) { %> selected <% } %> ><%= district %></option>
+                    <% }); %>
+                </select>
+                <div class="invalid-feedback">
+                    Please select the district.
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="text-end">
+                    <button onclick="editAccount('<%= details[0].UserId._id %>')" class="btn btn-primary" id="btnSave" type="submit">Save</button>
+                </div>
+            </div>
+        </form>      
+    </div>
+</section>
+<script src="/js/adminAccount.js"></script>

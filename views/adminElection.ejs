@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/css/adminElection.css">
+
+
+<section class="voterTally">
+    <h1 class="headingText">All Elections</h1>
+    <div class="container">
+        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewElection" onclick="openPopup()"> <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i> Add New Election</button>
+    </div>
+    <!-- Popup Form -->
+    <div class="popup" id="popup">
+        <div class="close-btn">&times;</div>
+        <form class="row g-3 needs-validation" action="/election/register" method="post" novalidate>
+            <!-- Form fields here -->
+        </form>
+    </div>
+    <div class="tableElection">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Election Name</th>
+                    <th scope="col">Election Type</th>
+                    <th scope="col">Province</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Results Announced</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% elections.forEach((election, index) => { %>
+                    <tr id="electionRow_<%= election._id %>">
+                        <th scope="row"><%= index + 1 %></th>
+                        <td><%= election.Name %></td>
+                        <td><%= election.ElectionType %></td>
+                        <td><%= election.Province %></td>
+                        <td><%= election.City %></td>
+                        <td><%= election.Region %></td>
+                        <td><%= election.Description %></td>
+                        <td><%= election.StartDate.toLocaleDateString() %></td>
+                        <td><%= election.EndDate.toLocaleDateString() %></td>
+                        <td><%= election.CreatedBy && election.CreatedBy.UserName ? election.CreatedBy.UserName : "" %></td>
+                        <td><%= election.isActive ? 'No' : 'Yes' %></td>
+                        <td>
+                            <button onclick="editElection(
+                                '<%= election._id %>',
+                                '<%= election.Name %>',
+                                '<%= election.ElectionType %>',
+                                '<%= election.Province %>',
+                                '<%= election.City %>',
+                                '<%= election.Region %>',
+                                '<%= election.Description %>',
+                                '<%= election.StartDate %>',
+                                '<%= election.EndDate %>'
+                            )" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i> Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button onclick="deleteElection('<%= election._id %>')" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>
+<script src="/js/adminElection.js"></script>

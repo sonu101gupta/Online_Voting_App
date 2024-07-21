@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <!-- Your header content -->
+    </header>
+
+    <main>
+        <h1>Election Results</h1>
+        <ul>
+            <% if (results && results.length > 0) { %>
+                <% results.forEach(result => { %>
+                    <li>
+                        <strong>Election:</strong> <%= result.electionName %> <br>
+                        <strong>Candidate:</strong> <%= result.candidateName %> <br>
+                        <strong>Votes:</strong> <%= result.votes %> <br>
+                    </li>
+                <% }); %>
+            <% } else { %>
+                <p>No results found.</p>
+            <% } %>
+        </ul>
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>

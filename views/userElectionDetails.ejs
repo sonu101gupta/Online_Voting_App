@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Details</title>
+    <link rel="stylesheet" href="/css/adminElection.css">
+    <style>
+        /* Style for the Election Details page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            margin-top: 50px;
+            padding-top: 100px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .election-details-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .election-details-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .election-details-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .election-details-item:last-child {
+            border-bottom: none;
+        }
+
+        .election-details-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .election-details-item br {
+            display: none;
+        }
+
+        .election-details-item::before {
+            content: '\00a0'; /* Adding a space */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Your header content -->
+    </header>
+
+    <main>
+        <h1>Election Details</h1>
+        <div class="election-details-container">
+            <ul class="election-details-list">
+                <% electionDetails.forEach(function(election) { %>
+                    <li class="election-details-item">
+                        <strong>Name:</strong> <%= election.Name %>
+                        <strong>Type:</strong> <%= election.ElectionType %>
+                        <strong>Province:</strong> <%= election.Province %>
+                        <strong>City:</strong> <%= election.City %>
+                        <strong>Region:</strong> <%= election.Region %>
+                        <strong>Start Date:</strong> <%= election.StartDate %>
+                        <strong>End Date:</strong> <%= election.EndDate %>
+                        <strong>Description:</strong> <%= election.Description %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>

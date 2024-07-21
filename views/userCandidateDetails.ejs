@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Details</title>
+    <link rel="stylesheet" href="/css/adminElection.css">
+    <style>
+        /* Style for the Candidate Details page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            padding-top: 50px;
+        }
+        main{
+            padding-top: 100px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+ 
+        .candidate-details-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .candidate-details-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .candidate-details-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .candidate-details-item:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-details-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .candidate-details-item br {
+            display: none;
+        }
+
+        .candidate-details-item::before {
+            content: '\00a0'; /* Adding a space */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Your header content -->
+    </header>
+
+    <main>
+        <div class="candidate-details-page">
+            <h1>Candidate Details</h1>
+            <ul class="candidate-details-list">
+                <% candidates.forEach(function(candidate) { %>
+                    <li class="candidate-details-item">
+                        <strong>Name:</strong> <%= candidate.FirstName %> <%= candidate.LastName %> <br>
+                        <strong>Party:</strong> <%= candidate.PartyName %> <br>
+                        <strong>Age:</strong> <%= candidate.Age %> <br>
+                        <strong>Description:</strong> <%= candidate.Description %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>
